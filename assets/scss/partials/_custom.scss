@@ -2,17 +2,17 @@ body {
 	background: #fff;
 }
 .big-wrapper {
-	margin: 89px 0 0;
+	margin: 0;
 }
 .parallax-section-1 {
-    height: 450px;
+    height: 890px;
     background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-image: url('http://cdn2.hubspot.net/hub/292236/file-281983742-jpg/assets/img/HUGNH-TUGS-BLURRED.jpg');
+    background-image: url('./images/hero-bg.jpg');
          /* Mobile Parallax Photo */
     @media (max-width: 650px) {
-        background-image: url('http://cdn2.hubspot.net/hub/292236/file-281983742-jpg/assets/img/HUGNH-TUGS-BLURRED.jpg'); height: 300px;
+        background-image: url('./images/hero-bg.jpg'); height: 300px;
     }
 
 }

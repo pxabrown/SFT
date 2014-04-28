@@ -22,12 +22,12 @@
 	<![endif]-->
 	<div id="wrap">
     
-	<?php $nav_class = (get_theme_mod('navbar_inverse') ? 'navbar-inverse' : 'navbar-default'); ?>
+	<?php $nav_class = (get_theme_mod('navbar_inverse') ? 'navbar-inverse' : 'navbar'); ?>
   <nav class="navbar <?php echo $nav_class ?> navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="container">
         <div class="row">
-      	    <div class="col-xs-12 align-center">
+      	    <div class="col-xs-4 align-center">
               <?php if ( get_theme_mod( 'header_image' )) { ?>
                   <div class='site-logo'>
                       <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'>
@@ -45,18 +45,11 @@
               <?php if ( get_theme_mod( 'show_tagline' )) { ?>
                 <p class="lead"><?php echo get_bloginfo ( 'description' );  ?></p>
               <?php } ?>
+              
+             
+              
         	  </div>
-        </div>
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <?php
+        	   <?php
             wp_nav_menu( array(
                 'menu'              => 'primary',
                 'theme_location'    => 'primary',
@@ -68,16 +61,29 @@
                 'walker'            => new wp_bootstrap_navwalker())
             );
         ?>
-    </div>
+
+        </div>
+       <!--
+ <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+-->
+
+            </div>
   </nav>
   <?php if(is_front_page() && $options['carousel_id']) { ?>
     <?php echo BootstrapCarousel::get_gallery($options['carousel_id'], 'main-carousel'); ?>
   <?php } ?>
-  
+  <?php if(is_front_page()) { ?>
 <div class="big-wrapper">
  <div class="parallax-section-1"></div>
 </div>
-  
+  <?php } ?>
   
 
 

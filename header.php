@@ -21,9 +21,10 @@
 	    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 	<![endif]-->
 	<div id="wrap">
-    
 	<?php $nav_class = (get_theme_mod('navbar_inverse') ? 'navbar-inverse' : 'navbar-default'); ?>
   <nav class="navbar <?php echo $nav_class ?> navbar-fixed-top" role="navigation">
+      <div class="topbar">top</div>
+
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="container">
         <div class="row">
@@ -81,8 +82,9 @@
 <div class="big-wrapper">
  <div class="parallax-section-1"></div>
 </div>
+  <?php } else { ?>
+  <div class="block-spacer"></div>
   <?php } ?>
-  
 
 
 

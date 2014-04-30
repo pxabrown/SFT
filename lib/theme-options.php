@@ -164,7 +164,10 @@ function bootstrap_sass_customize_css()
   $header_bg_color = esc_attr(get_theme_mod('header_bg_color'));
   if ($header_bg_color && $header_bg_color !== '') {
     ?>
-       <style type="text/css">
+    <?php if(is_front_page()) { ?>
+
+       <?php } else { ?>
+              <style type="text/css">
            .navbar-default, .navbar-inverse { 
              background-color: <?php echo $header_bg_color ?>;
              border-color: <?php echo adjustBrightness($header_bg_color, -15) ?>;
@@ -174,6 +177,7 @@ function bootstrap_sass_customize_css()
              color: #fefefe;
            }
        </style>
+       <?php } ?>
     <?php
   }
   

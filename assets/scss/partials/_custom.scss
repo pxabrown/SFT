@@ -25,9 +25,21 @@ body {
         margin: 0px;
         float: left;
     }
+    .topbar {
+        height: 50px;
+        background: #000;
+    }
     .block-spacer {
         height: 100px;
-        margin-bottom: 50px;
+        margin-bottom: 100px;
+    }
+    .navbar {
+        .navbar-nav {
+            margin-left: auto;
+            margin-right: auto;
+            width: 55%;
+        }
     }
 }
+
 

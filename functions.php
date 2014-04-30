@@ -10,7 +10,7 @@ require_once( get_template_directory() . '/lib/theme-functions.php' );
 require_once( get_template_directory() . '/lib/theme-comments.php' );
 require_once( get_template_directory() . '/lib/theme-options.php' );
 require_once( get_template_directory() . '/lib/bootstrap-walker.php' );
-require_once( get_template_directory() . '/lib/bootstrap-carousel.php' );
+//require_once( get_template_directory() . '/lib/bootstrap-carousel.php' );
 
 /****************************************
 Require Plugins
@@ -46,9 +46,9 @@ function hide_standard_shipping_when_free_is_available( $available_methods ) {
 /**
  * Define custom post type capabilities for use with Members
  */
-function mb_add_post_type_caps() {
-	mb_add_capabilities( 'portfolio' );
-}
+//function mb_add_post_type_caps() {
+	//mb_add_capabilities( 'portfolio' );
+//}
 
 /**
  * Filter Yoast SEO Metabox Priority

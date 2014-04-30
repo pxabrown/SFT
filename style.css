@@ -3353,7 +3353,7 @@ input[type="button"].btn-block {
   margin-bottom: 8px;
   background-color: transparent;
   background-image: none;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   border-radius: 4px; }
   .navbar-toggle:focus {
     outline: none; }
@@ -5025,7 +5025,7 @@ body {
   margin: 0; }
 
 .parallax-section-1 {
-  height: 890px;
+  height: 490px;
   background-position: center top;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -5034,7 +5034,17 @@ body {
   @media (max-width: 650px) {
     .parallax-section-1 {
       background-image: url("./images/hero-bg.jpg");
-      height: 300px; } }
+      height: 480px; } }
+
+#wrap .usermenu {
+  background: #000;
+  height: 50px; }
+#wrap .logo {
+  margin: 0px;
+  float: left; }
+#wrap .block-spacer {
+  height: 100px;
+  margin-bottom: 50px; }
 
 img {
   max-width: 100%;

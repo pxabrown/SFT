@@ -5,16 +5,29 @@ body {
 	margin: 0;
 }
 .parallax-section-1 {
-    height: 890px;
+    height: 490px;
     background-position: center top;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-image: url('./images/hero-bg.jpg');
          /* Mobile Parallax Photo */
     @media (max-width: 650px) {
-        background-image: url('./images/hero-bg.jpg'); height: 300px;
+        background-image: url('./images/hero-bg.jpg'); height: 480px;
     }
 
 }
-    
-    
+#wrap {
+    .usermenu {
+        background: #000;
+        height: 50px;   
+    }
+    .logo {
+        margin: 0px;
+        float: left;
+    }
+    .block-spacer {
+        height: 100px;
+        margin-bottom: 50px;
+    }
+}
+

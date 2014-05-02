@@ -22,9 +22,32 @@
 	<![endif]-->
 	<div id="wrap">
 	<?php $nav_class = (get_theme_mod('navbar_inverse') ? 'navbar-inverse' : 'navbar-default'); ?>
+	<?php if(is_front_page()) { ?>
   <nav class="navbar <?php echo $nav_class ?> navbar-fixed-top" role="navigation">
-      <div class="topbar">top</div>
+  <?php } else { ?>
+    <nav class="navbar" role="navigation">
 
+  <?php } ?>
+      <div class="topbar">
+      <div class="container">
+        <div class="row">
+              	   <div class="col-md-4 hidden-phone hidden-xs">
+              	    Free Shipping on all orders over $75 Limited Time!
+              	    </div>
+      	    <div class="col-xs-12 col-md-4 col-md-offset-4">
+          	    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/mag-glass.png" alt="">
+      	     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cart-icon.png" alt="">
+      	     
+      <?php global $woocommerce; ?>
+
+<a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>">
+
+<?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?> - <?php echo $woocommerce->cart->get_cart_total(); ?></a>
+      	    </div>
+        </div>
+      </div>
+</div>
+<div class="clearfix"></div>
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="container">
         <div class="row">
@@ -47,6 +70,7 @@
                 <p class="lead"><?php echo get_bloginfo ( 'description' );  ?></p>
               <?php } ?>
         	  </div>
+<!--
         	    <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -55,6 +79,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
+-->
          <?php
             wp_nav_menu( array(
                 'menu'              => 'primary',
@@ -73,18 +98,42 @@
       
            </div>
   </nav>
-  <?php if(is_front_page() && $options['carousel_id']) { ?>
-    <?php echo BootstrapCarousel::get_gallery($options['carousel_id'], 'main-carousel'); ?>
-  <?php } ?>
-  
   
   <?php if(is_front_page()) { ?>
 <div class="big-wrapper">
  <div class="parallax-section-1"></div>
 </div>
-  <?php } else { ?>
+  
+         <!-- CAT - HEARING ENHANCEMENT -->
+<?php } elseif (is_tax('product_cat', 'boys','')) { ?>
+ 
+  <div class="big-wrapper">    
+
+ <div class="parallax-section-category hidden-phone" style="background-image: url(<?php the_field('hero_image');?>) no-repeat;">
+ <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+<h1 class='site-title'>
+                        <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><?php the_title(); ?>
+                        </a>
+                      </h1>
+      
+        </div>
+    </div>
+ </div>
+ </div>
+</div>
+
+
+<? } elseif (is_tax('product_cat', 'microblast')) { ?>
+<div class="cat_headaers hidden-phone"> <img src="<?php echo get_template_directory_uri(); ?>/images/cat_headers/microblast-header.jpg" /> </div>
+
+         
+     <?php } else { ?>
+  
   <div class="block-spacer"></div>
   <?php } ?>
+
 
 
 

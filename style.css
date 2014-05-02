@@ -24,6 +24,17 @@ body {
       background-image: url("./images/hero-bg.jpg");
       height: 480px; } }
 
+.parallax-section-category {
+  height: 250px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* Mobile Parallax Photo */ }
+  @media (max-width: 650px) {
+    .parallax-section-category {
+      background-image: url("./images/hero-bg.jpg");
+      height: 480px; } }
+
 #wrap .usermenu {
   background: #000;
   height: 50px; }
@@ -31,15 +42,21 @@ body {
   margin: 0px;
   float: left; }
 #wrap .topbar {
-  height: 50px;
-  background: #000; }
+  height: 40px;
+  padding: 10px;
+  background: #000;
+  color: #fff; }
+  #wrap .topbar a {
+    color: #fff; }
 #wrap .block-spacer {
-  height: 100px;
-  margin-bottom: 100px; }
-#wrap .navbar .navbar-nav {
-  margin-left: auto;
-  margin-right: auto;
-  width: 55%; }
+  height: 0px;
+  margin-bottom: 10px; }
+#wrap .navbar {
+  border: none; }
+  #wrap .navbar .navbar-nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%; }
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {

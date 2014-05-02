@@ -16,6 +16,18 @@ body {
     }
 
 }
+.parallax-section-category {
+    height: 250px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+         /* Mobile Parallax Photo */
+    @media (max-width: 650px) {
+        background-image: url('./images/hero-bg.jpg'); height: 480px;
+    }
+
+}
+
 #wrap {
     .usermenu {
         background: #000;
@@ -26,14 +38,20 @@ body {
         float: left;
     }
     .topbar {
-        height: 50px;
+        height: 40px;
+        padding: 10px;
         background: #000;
+        color: #fff;
+            a {
+                color: #fff;
+            }
     }
     .block-spacer {
-        height: 100px;
-        margin-bottom: 100px;
+        height: 0px;
+        margin-bottom: 10px;
     }
     .navbar {
+        border: none;
         .navbar-nav {
             margin-left: auto;
             margin-right: auto;

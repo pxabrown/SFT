@@ -27,6 +27,13 @@ Misc Theme Functions
 *****************************************/
 add_theme_support( 'woocommerce' ); //WOOCOMMERCE SUPPORT
 
+
+
+
+
+
+/////// hide shipping drop down ////////////
+
 // Hide standard shipping option when free shipping is available
 add_filter( 'woocommerce_available_shipping_methods', 'hide_standard_shipping_when_free_is_available' , 10, 1 );
 /**
@@ -43,7 +50,7 @@ function hide_standard_shipping_when_free_is_available( $available_methods ) {
 } 
 
 
-// Ensure cart contents update when products are added to the cart via AJAX (place the following in functions.php)
+// Ensure cart contents update when products are added to the cart via AJAX
 add_filter('add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment');
  
 function woocommerce_header_add_to_cart_fragment( $fragments ) {

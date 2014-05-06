@@ -7,6 +7,11 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/favicon.ico">
 	<link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/apple-touch-icon.png">
+	<script type="text/javascript">
+var js = document.createElement('script'); js.type = 'text/javascript'; js.async = true; js.id = 'AddShoppers';
+js.src = ('https:' == document.location.protocol ? 'https://shop.pe/widget/' : 'http://cdn.shop.pe/widget/') + 'widget_async.js#5367d3afa3876458b769626b';
+document.getElementsByTagName("head")[0].appendChild(js);
+</script>
 	<?php wp_head(); ?>
 	<?php
 	  // get options from theme

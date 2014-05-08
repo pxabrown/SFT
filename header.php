@@ -33,6 +33,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
     <nav class="navbar" role="navigation">
 
   <?php } ?>
+  
       <div class="topbar">
       <div class="container">
         <div class="row">

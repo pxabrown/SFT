@@ -25,7 +25,6 @@ body {
     @media (max-width: 650px) {
         background-image: url('./images/hero-bg.jpg'); height: 480px;
     }
-
 }
 
 #wrap {
@@ -58,6 +57,38 @@ body {
             width: 55%;
         }
     }
+    @media (max-width: 650px) {
+        .flex-control-nav {
+            display: none;
+        }
+    }
+    h1.product_title {
+        @media (max-width: 650px) {
+            display: none;
+        }
+    }
+    .woocommerce-breadcrumb {
+        display: none;
+        @media (max-width: 650px) {
+            display: none;
+        }
+    }
+    h1.mobile-product-title {
+        @media (max-width: 650px) {
+            font-size: 18px;
+        }
+    }
+    h1.product_title {
+        font-size: 22px;
+    }
+    .product_meta {
+        border-top: 1px solid #eee;
+        padding: 20px 0;
+    }
+    .related {
+        border-top: 1px solid #eee;
+        padding: 20px 0;
+    }
 }
 
 
@@ -67,4 +98,66 @@ body {
 }
 
 
+
+.woocommerce #content div.product div.images img, .woocommerce div.product div.images img, .woocommerce-page #content div.product div.images img, .woocommerce-page div.product div.images img {
+    box-shadow: none;
+    display: block;
+    height: auto;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images {
+    margin-bottom: 2em;
+    width: 30%;
+    @media (max-width: 650px) {
+        width: 100%;
+    }
+}
+
+
+.woocommerce .related ul li.product, .woocommerce .related ul.products li.product, .woocommerce .upsells.products ul li.product, .woocommerce .upsells.products ul.products li.product, .woocommerce-page .related ul li.product, .woocommerce-page .related ul.products li.product, .woocommerce-page .upsells.products ul li.product, .woocommerce-page .upsells.products ul.products li.product {
+        width: 10%;
+
+    @media (max-width: 650px) {
+        width: 48%;
+    }
+        .add_to_cart_button {
+            display: none;
+        }
+}
+.woocommerce .products .star-rating, .woocommerce-page .products .star-rating {
+        display: none;
+    }
+    .woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3 {
+        display: none;
+    }
+    
+    .related {
+        ul.products {
+            li.product a {
+                span.price {
+                    display: none;
+                }
+                .onsale {
+                    display: none;
+                }
+            }
+        }
+    }
+
+
+.woocommerce #content div.product form.cart .variations select, .woocommerce div.product form.cart .variations select, .woocommerce-page #content div.product form.cart .variations select, .woocommerce-page div.product form.cart .variations select {
+    background: none repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #E5E5E5;
+    float: left;
+    margin: 0 0 10px;
+    padding: 11px;
+    width: 100%;
+}
+
+.variations {
+   td.label {
+    display: none;       
+    }
+}
 

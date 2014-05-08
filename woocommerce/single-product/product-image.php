@@ -41,6 +41,5 @@ global $post, $woocommerce, $product;
 	?>
 
 	<?php do_action( 'woocommerce_product_thumbnails' ); ?>
-	
 
 </div>

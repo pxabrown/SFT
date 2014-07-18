@@ -108,12 +108,16 @@ body {
 
 .woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images {
     margin-bottom: 2em;
-    width: 30%;
+    width: 38%;
     @media (max-width: 650px) {
         width: 100%;
     }
 }
 
+.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
+    float: right;
+    width: 53%;
+}
 
 .woocommerce .related ul li.product, .woocommerce .related ul.products li.product, .woocommerce .upsells.products ul li.product, .woocommerce .upsells.products ul.products li.product, .woocommerce-page .related ul li.product, .woocommerce-page .related ul.products li.product, .woocommerce-page .upsells.products ul li.product, .woocommerce-page .upsells.products ul.products li.product {
         width: 10%;
@@ -160,4 +164,5 @@ body {
     display: none;       
     }
 }
+
 

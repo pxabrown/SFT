@@ -37,10 +37,10 @@ document.getElementsByTagName("head")[0].appendChild(js);
       <div class="topbar">
       <div class="container">
         <div class="row">
-              	   <div class="col-md-4 hidden-phone hidden-xs">
+              	   <div class="col-md-4 hidden-xs">
               	    Free Shipping on all orders over $75 Limited Time!
               	    </div>
-      	    <div class="col-xs-12 col-md-4 col-md-offset-4">
+      	    <div class="col-xs-12 col-md-2 pull-right">
           	    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/mag-glass.png" alt="">
       	     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cart-icon.png" alt="">
       	     
@@ -57,7 +57,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="container">
         <div class="row">
-      	    <div class="col-xs-4 align-center">
+      	    <div class="col-xs-4 col-md-2 align-center">
               <?php if ( get_theme_mod( 'header_image' )) { ?>
                   <div class='site-logo'>
                       <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'>
@@ -76,7 +76,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
                 <p class="lead"><?php echo get_bloginfo ( 'description' );  ?></p>
               <?php } ?>
         	  </div>
-<!--
+
         	    <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-1-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -85,7 +85,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
                 <span class="icon-bar"></span>
             </button>
         </div>
--->
+
          <?php
             wp_nav_menu( array(
                 'menu'              => 'primary',
@@ -93,7 +93,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
                 'depth'             => 2,
                 'container'         => 'div',
                 'container_class'   => 'slide collapse navbar-collapse navbar-1-collapse',
-                'menu_class'        => 'nav navbar-nav',
+                'menu_class'        => 'nav navbar-nav col-md-7 pull-right',
                 'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
                 'walker'            => new wp_bootstrap_navwalker())
             );
@@ -105,61 +105,21 @@ document.getElementsByTagName("head")[0].appendChild(js);
            </div>
   </nav>
   
-  <?php if(is_front_page()) { ?>
+<?php if(is_front_page()) { ?>
 <div class="big-wrapper">
  <div class="parallax-section-1"></div>
 </div>
   
-         <!-- CAT - HEARING ENHANCEMENT -->
+<!-- CAT - HEARING ENHANCEMENT -->
 <?php } elseif (is_tax('product_cat', 'boys','')) { ?>
  
-  <div class="big-wrapper">    
+<? } elseif (is_tax('product_cat', 'mens')) { ?>
+<div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
 
- <div class="parallax-section-category hidden-phone" style="background-image: url(<?php the_field('hero_image');?>) no-repeat;">
- <div class="container">
-    <div class="row">
-        <div class="col-md-5">
-<h1 class='site-title'>
-                        <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><?php the_title(); ?>
-                        </a>
-                      </h1>
-      
-        </div>
-    </div>
- </div>
- </div>
-</div>
-
-
-<? } elseif (is_tax('product_cat', 'microblast')) { ?>
-<div class="cat_headaers hidden-phone"> <img src="<?php echo get_template_directory_uri(); ?>/images/cat_headers/microblast-header.jpg" /> </div>
-
-         
-     <?php } else { ?>
+<?php } else { ?>
   
   <div class="block-spacer"></div>
   <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   

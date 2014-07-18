@@ -28,9 +28,6 @@ Misc Theme Functions
 add_theme_support( 'woocommerce' ); //WOOCOMMERCE SUPPORT
 
 
-
-
-
 /************** SHIPPING DROP DOWN REMOVED ************/
 /////// hide shipping drop down ////////////
 

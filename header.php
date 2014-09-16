@@ -19,6 +19,12 @@ document.getElementsByTagName("head")[0].appendChild(js);
     //show tracking code for the header
     echo stripslashes($options['tracking']);
   ?>
+  
+    
+  <!-- Styles -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+  
 </head>
 
 <body <?php body_class(); ?>>
@@ -26,22 +32,18 @@ document.getElementsByTagName("head")[0].appendChild(js);
 	    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 	<![endif]-->
 	<div id="wrap">
-	<?php $nav_class = (get_theme_mod('navbar_inverse') ? 'navbar-inverse' : 'navbar-default'); ?>
-	<?php if(is_front_page()) { ?>
-  <nav class="navbar <?php echo $nav_class ?> navbar-fixed-top" role="navigation">
-  <?php } else { ?>
-    <nav class="navbar" role="navigation">
+	
 
-  <?php } ?>
+	
   
       <div class="topbar">
       <div class="container">
         <div class="row">
               	   <div class="col-md-4 hidden-xs">
-              	    Free Shipping on all orders over $75 Limited Time!
+              	    <?php include (TEMPLATEPATH . '/searchform.php'); ?>
               	    </div>
       	    <div class="col-xs-12 col-md-2 pull-right">
-          	    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/mag-glass.png" alt="">
+          	    
       	     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cart-icon.png" alt="">
       	     
       <?php global $woocommerce; ?>
@@ -57,7 +59,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="container">
         <div class="row">
-      	    <div class="col-xs-4 col-md-2 align-center">
+      	    <div class="col-xs-9 col-md-12">
               <?php if ( get_theme_mod( 'header_image' )) { ?>
                   <div class='site-logo'>
                       <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'>
@@ -66,44 +68,25 @@ document.getElementsByTagName("head")[0].appendChild(js);
                   </div>
               <?php } else { ?>
                   <hgroup>
-                      <h1 class='site-title'>
+                      <div class='logo'>
                         <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><?php bloginfo( 'name' ); ?>
                         </a>
-                      </h1>
+                      </div>
                   </hgroup>
               <?php } ?>
               <?php if ( get_theme_mod( 'show_tagline' )) { ?>
                 <p class="lead"><?php echo get_bloginfo ( 'description' );  ?></p>
               <?php } ?>
         	  </div>
-
-        	    <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        	  
+        	  
+<?php ubermenu( 'main' , array( 'menu' => 129 ) ); ?>
+        	  
+        	  
         </div>
+    </div>
 
-         <?php
-            wp_nav_menu( array(
-                'menu'              => 'primary',
-                'theme_location'    => 'primary',
-                'depth'             => 2,
-                'container'         => 'div',
-                'container_class'   => 'slide collapse navbar-collapse navbar-1-collapse',
-                'menu_class'        => 'nav navbar-nav col-md-7 pull-right',
-                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                'walker'            => new wp_bootstrap_navwalker())
-            );
-        ?>
-
-
-        </div>
-      
-           </div>
-  </nav>
+ 
   
 <?php if(is_front_page()) { ?>
 <div class="big-wrapper">
@@ -118,11 +101,10 @@ document.getElementsByTagName("head")[0].appendChild(js);
 
 <?php } else { ?>
   
-  <div class="block-spacer"></div>
   <?php } ?>
 
 
   
   <div id="container" class="container">
   
-  
+ 

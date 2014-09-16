@@ -4,28 +4,31 @@ body {
 .big-wrapper {
 	margin: 0;
 }
-.parallax-section-1 {
-    height: 490px;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-image: url('./images/hero-bg.jpg');
-         /* Mobile Parallax Photo */
-    @media (max-width: 650px) {
-        background-image: url('./images/hero-bg.jpg'); height: 480px;
-    }
 
+a {
+    color: #000;
 }
-.parallax-section-category {
-    height: 250px;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-         /* Mobile Parallax Photo */
-    @media (max-width: 650px) {
-        background-image: url('./images/hero-bg.jpg'); height: 480px;
+
+.woocommerce ul.products li.first, .woocommerce-page ul.products li.first {
+    clear: none !important;
+}
+
+
+.woocommerce ul.products li.product a img, .woocommerce-page ul.products li.product a img {
+    box-shadow: none;
+    }
+    
+
+#sdrn_menu.sdrn_levels {
+    ul li {
+        ul li {
+            background: none repeat scroll 0 0 #ededed;
+            padding-left: 44px;
+        }
     }
 }
+
+
 
 #wrap {
     .usermenu {
@@ -33,29 +36,46 @@ body {
         height: 50px;   
     }
     .logo {
-        margin: 0px;
-        float: left;
+            a {
+                background: url("./images/logo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                display: block;
+                height: 100px;
+                margin: 5px auto auto;
+                text-indent: -999999px;
+                width: 131px;
+                @media (max-width: 650px) {
+                    background: url("./images/mobile-logo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                    display: block;
+                    height: 50px;
+                    margin: 5px auto auto;
+                    text-indent: -999999px;
+                    width: 205px;
+                }
+            }  
     }
     .topbar {
         height: 40px;
         padding: 10px;
-        background: #000;
-        color: #fff;
             a {
-                color: #fff;
+                color: #000;
             }
     }
     .block-spacer {
         height: 0px;
         margin-bottom: 10px;
     }
-    .navbar {
-        border: none;
-        .navbar-nav {
-            margin-left: auto;
-            margin-right: auto;
-            width: 55%;
+    @media (max-width: 650px) {
+        .page-title {
+            text-align: center;
         }
+        p.woocommerce-result-count {
+            float: none !important;
+            text-align: center;
+        }
+        form.woocommerce-ordering {
+            float: none;
+            text-align: center;
+        }       
     }
     @media (max-width: 650px) {
         .flex-control-nav {
@@ -64,11 +84,11 @@ body {
     }
     h1.product_title {
         @media (max-width: 650px) {
-            display: none;
+            //display: none;
         }
     }
     .woocommerce-breadcrumb {
-        display: none;
+        //display: none;
         @media (max-width: 650px) {
             display: none;
         }
@@ -92,13 +112,8 @@ body {
 }
 
 
-.pinterest {
-	background: url("http://www.urbanoutfitters.com/images/pinterest.png") no-repeat scroll left top transparent;
-	padding:0px 16px 0 0;
-}
 
-
-
+//FIX SASS
 .woocommerce #content div.product div.images img, .woocommerce div.product div.images img, .woocommerce-page #content div.product div.images img, .woocommerce-page div.product div.images img {
     box-shadow: none;
     display: block;
@@ -106,36 +121,28 @@ body {
     transition: all 0.2s ease-in-out 0s;
 }
 
+//FIX SASS
 .woocommerce #content div.product div.images, .woocommerce div.product div.images, .woocommerce-page #content div.product div.images, .woocommerce-page div.product div.images {
     margin-bottom: 2em;
-    width: 38%;
+    
     @media (max-width: 650px) {
         width: 100%;
     }
 }
 
-.woocommerce #content div.product div.summary, .woocommerce div.product div.summary, .woocommerce-page #content div.product div.summary, .woocommerce-page div.product div.summary {
-    float: right;
-    width: 53%;
-}
 
+//FIX SASS
 .woocommerce .related ul li.product, .woocommerce .related ul.products li.product, .woocommerce .upsells.products ul li.product, .woocommerce .upsells.products ul.products li.product, .woocommerce-page .related ul li.product, .woocommerce-page .related ul.products li.product, .woocommerce-page .upsells.products ul li.product, .woocommerce-page .upsells.products ul.products li.product {
-        width: 10%;
+        width: 15%;
 
     @media (max-width: 650px) {
         width: 48%;
-    }
-        .add_to_cart_button {
-            display: none;
         }
 }
+//FIX SASS
 .woocommerce .products .star-rating, .woocommerce-page .products .star-rating {
-        display: none;
+        //display: none;
     }
-    .woocommerce ul.products li.product h3, .woocommerce-page ul.products li.product h3 {
-        display: none;
-    }
-    
     .related {
         ul.products {
             li.product a {
@@ -143,20 +150,93 @@ body {
                     display: none;
                 }
                 .onsale {
-                    display: none;
+                    //display: none;
                 }
             }
         }
     }
-
-
+//FIX SASS
 .woocommerce #content div.product form.cart .variations select, .woocommerce div.product form.cart .variations select, .woocommerce-page #content div.product form.cart .variations select, .woocommerce-page div.product form.cart .variations select {
     background: none repeat scroll 0 0 #F7F7F7;
     border: 1px solid #E5E5E5;
-    float: left;
     margin: 0 0 10px;
     padding: 11px;
     width: 100%;
+}
+
+//FIX SASS
+.woocommerce #content input.button.alt, 
+.woocommerce #respond input#submit.alt, 
+.woocommerce a.button.alt, 
+.woocommerce button.button.alt, 
+.woocommerce input.button.alt, 
+.woocommerce-page #content input.button.alt, 
+.woocommerce-page #respond input#submit.alt, 
+.woocommerce-page a.button.alt, 
+.woocommerce-page button.button.alt, 
+.woocommerce-page input.button.alt {
+    background: none repeat scroll 0 0 #ff4d49;
+    border-color: #ff4d49;
+    color: #fff;
+    text-shadow:  none;
+    }
+//FIX SASS
+.woocommerce #content input.button.alt:hover, 
+.woocommerce #respond input#submit.alt:hover, 
+.woocommerce a.button.alt:hover, 
+.woocommerce button.button.alt:hover, 
+.woocommerce input.button.alt:hover, 
+.woocommerce-page #content input.button.alt:hover, 
+.woocommerce-page #respond input#submit.alt:hover, 
+.woocommerce-page a.button.alt:hover, 
+.woocommerce-page button.button.alt:hover, 
+.woocommerce-page input.button.alt:hover {
+    background: none repeat scroll 0 0 #ff2d3d;
+    border-color: #ff4d49;
+    color: #fff;
+    text-shadow:  none;
+    }
+
+
+//FIX SASS
+.woocommerce #content input.button, 
+.woocommerce #respond input#submit, 
+.woocommerce a.button, 
+.woocommerce button.button, 
+.woocommerce input.button, 
+.woocommerce-page #content input.button, 
+.woocommerce-page #respond input#submit, 
+.woocommerce-page a.button, 
+.woocommerce-page button.button, 
+.woocommerce-page input.button {
+    border-radius: 2px;
+    box-shadow: none;
+    }
+
+
+.woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price {
+    color: #000;
+}
+
+
+.woocommerce span.onsale, .woocommerce-page span.onsale {
+    background: #63c7bf;
+}
+
+.panel-default > .panel-heading {
+    background-color: #fff !important;
+    border-color: 0px;
+    color: #333333;
+}
+
+.panel-default > .panel-heading {
+    background-color: #fff !important;
+    border-color: 0px;
+    color: #333333;
+}
+
+.panel-title > a {
+    display: block;
 }
 
 .variations {
@@ -164,5 +244,3 @@ body {
     display: none;       
     }
 }
-
-

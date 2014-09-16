@@ -45,6 +45,45 @@ function hide_standard_shipping_when_free_is_available( $available_methods ) {
     }
     return $available_methods;
 } 
+ 
+// AB - GOOGLE ANALYTICS
+
+//wp_enqueue_style( ‘login’, get_stylesheet_directory_uri().’/login/login-styles.css’ );
+
+//function custom_login_css() {
+    //echo '<link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/login/login-styles.css" />'; 
+    //}
+    //add_action('login_head', 'custom_login_css');
+
+function my_login_logo_url() {
+return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+return 'Slyfox Threads';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+function login_checked_remember_me() {
+add_filter( 'login_footer', 'rememberme_checked' );
+}
+add_action( 'init', 'login_checked_remember_me' );
+
+function rememberme_checked() {
+echo "<script>document.getElementById('rememberme').checked = true;</script>";
+}
+
+
+
+// Display 24 products per page. Goes in functions.php
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 50;' ), 50 );
+
+
+// Redefine woocommerce_output_related_products()
+function woocommerce_output_related_products() {
+woocommerce_related_products(6,1); // Display 4 products in rows of 2
+}
 
 
 // Ensure cart contents update when products are added to the cart via AJAX
@@ -81,6 +120,9 @@ function mb_filter_yoast_seo_metabox() {
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
 
+
+//CUSTOM THEME ELEMENTS
+
 //REMOVE SINGLE PRODUCT PAGE ACTIONS //
 
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
@@ -99,8 +141,6 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_p
 
   
  
-  
- 
 //ADD SINGLE PRODUCT PAGE ACTIONS//
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
@@ -112,11 +152,64 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_a
 
 add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 40 );
 
-//add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
 
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 60 );
 
 add_action( 'woocommerce_before_single_product_summary', 'woocommerce_template_single_sharing', 50 );
 
  
+
+// change add to cart text
+
+add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' ); // < 2.1
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_cart_button_text' ); // 2.1 +
+function woo_custom_cart_button_text() {
+return __( 'add to bag', 'woocommerce' );
+} 
+
+/**
+ * WooCommerce Extra Feature
+ * --------------------------
+ *
+ * Change product columns number on shop pages
+ *
+ */
+function woo_product_columns_frontend() {
+    global $woocommerce;
+
+    // Default Value also used for categories and sub_categories
+    $columns = 3;
+
+    // Product List
+    if ( is_product_category() ) :
+        $columns = 3;
+    endif;
+
+    //Related Products
+    if ( is_product() ) :
+        $columns = 2;
+    endif;
+
+    //Cross Sells
+    if ( is_checkout() ) :
+        $columns = 4;
+    endif;
+
+	return $columns;
+}
+
+ /**
+ * Remove product tabs
+ *
+ */
+function woo_remove_product_tab($tabs) {
+
+    unset( $tabs['description'] );      		// Remove the description tab
+    unset( $tabs['reviews'] ); 					// Remove the reviews tab
+    unset( $tabs['additional_information'] );  	// Remove the additional information tab
+
+ 	return $tabs;
  
+}
+add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tab', 98);

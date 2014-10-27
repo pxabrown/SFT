@@ -24,7 +24,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
   <!-- Styles -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-  
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -36,21 +36,27 @@ document.getElementsByTagName("head")[0].appendChild(js);
 
 	
   
-      <div class="topbar">
-      <div class="container">
+      <div class="topbar-main">
+      <div class="container-fluid">
         <div class="row">
               	   <div class="col-md-4 hidden-xs">
               	    <?php include (TEMPLATEPATH . '/searchform.php'); ?>
               	    </div>
       	    <div class="col-xs-12 col-md-2 pull-right">
+      	   <?php if ( is_user_logged_in() ) { ?>
+<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php _e('My Account','woothemes'); ?></a>
+<?php }
+else { ?>
+<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
+<?php } ?>
           	    
       	     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cart-icon.png" alt="">
       	     
       <?php global $woocommerce; ?>
 
-<a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>">
+<a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping bag', 'woothemes'); ?>">
 
-<?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?> - <?php echo $woocommerce->cart->get_cart_total(); ?></a>
+<?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></a>
       	    </div>
         </div>
       </div>
@@ -78,7 +84,7 @@ document.getElementsByTagName("head")[0].appendChild(js);
                 <p class="lead"><?php echo get_bloginfo ( 'description' );  ?></p>
               <?php } ?>
         	  </div>
-        	  
+        	  <div class="clearfix"></div>
         	  
 <?php ubermenu( 'main' , array( 'menu' => 129 ) ); ?>
         	  
@@ -94,17 +100,33 @@ document.getElementsByTagName("head")[0].appendChild(js);
 </div>
   
 <!-- CAT - HEARING ENHANCEMENT -->
+<?php } elseif (is_tax('product_cat', 'kids','')) { ?>
+ <div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
+
 <?php } elseif (is_tax('product_cat', 'boys','')) { ?>
- 
+ <div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
+
 <? } elseif (is_tax('product_cat', 'mens')) { ?>
 <div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
+
+<? } elseif (is_tax('product_cat', 'womens')) { ?>
+<div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
+
+
 
 <?php } else { ?>
   
   <?php } ?>
 
+<?php if(is_front_page()) { ?>
+<?php } elseif (is_tax('product_cat')) { ?>
 
-  
-  <div id="container" class="container">
+   <div id="container" class="collection-pages">
+<?php } else { ?>
+   
+  <div id="container" class="container page-bumper">
+  <?php } ?>
+
+ 
   
  

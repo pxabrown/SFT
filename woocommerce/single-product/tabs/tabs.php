@@ -19,7 +19,6 @@ $tabs = apply_filters( 'woocommerce_product_tabs', array() );
 
 if ( ! empty( $tabs ) ) : ?>
 
-
 <!-- Details Tab -->
 <div class="panel-group" id="accordion">
   
@@ -39,7 +38,7 @@ if ( ! empty( $tabs ) ) : ?>
             
             global $woocommerce, $post;
             
-            $heading = esc_html( apply_filters( 'woocommerce_product_description_heading', __( 'Details', 'woocommerce' ) ) );
+            $heading = esc_html( apply_filters( 'woocommerce_product_description_heading', __( '', 'woocommerce' ) ) );
         ?>
         
         <h3><?php echo $heading; ?></h3>
@@ -81,7 +80,7 @@ if ( ! comments_open() )
 			if ( get_option( 'woocommerce_enable_review_rating' ) === 'yes' && ( $count = $product->get_rating_count() ) )
 				printf( _n( '%s review for %s', '%s reviews for %s', $count, 'woocommerce' ), $count, get_the_title() );
 			else
-				_e( 'Reviews', 'woocommerce' );
+				_e( '', 'woocommerce' );
 		?></h2>
 
 		<?php if ( have_comments() ) : ?>
@@ -160,8 +159,6 @@ if ( ! comments_open() )
   </div>
  
  </div>
-
-
 <?php endif; ?>
 
 

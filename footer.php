@@ -1,5 +1,6 @@
 	</div> <!-- /.container -->
   </div> <!-- /#wrap -->
+  <div class="clearfix"></div>
   <?php $footer_class = (get_theme_mod('footer_inverse') ? 'inverse' : 'default'); ?>
   <footer id="footer" class="<?php echo $footer_class; ?>">
     <div class="container">
@@ -9,7 +10,7 @@
 	</footer>
 
 
-    
+
     
   <?php wp_footer(); ?>
 

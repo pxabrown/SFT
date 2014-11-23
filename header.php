@@ -7,24 +7,12 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/favicon.ico">
 	<link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/apple-touch-icon.png">
-	<script type="text/javascript">
-var js = document.createElement('script'); js.type = 'text/javascript'; js.async = true; js.id = 'AddShoppers';
-js.src = ('https:' == document.location.protocol ? 'https://shop.pe/widget/' : 'http://cdn.shop.pe/widget/') + 'widget_async.js#5367d3afa3876458b769626b';
-document.getElementsByTagName("head")[0].appendChild(js);
-</script>
 	<?php wp_head(); ?>
-	<?php
-	  // get options from theme
-	  $options = get_option('theme_settings');
-    //show tracking code for the header
-    echo stripslashes($options['tracking']);
-  ?>
-  
-    
+
   <!-- Styles -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 </head>
 
 <body <?php body_class(); ?>>
@@ -34,38 +22,16 @@ document.getElementsByTagName("head")[0].appendChild(js);
 	<div id="wrap">
 	
 
-	
-  
-      <div class="topbar-main">
+      <div class="topbar-main hidden-xs">
       <div class="container-fluid">
         <div class="row">
-              	   <div class="col-md-4 hidden-xs">
+              	   <div class="col-md-4 col-sm-3 hidden-xs">
               	    <?php include (TEMPLATEPATH . '/searchform.php'); ?>
               	    </div>
-      	    <div class="col-xs-12 col-md-2 pull-right">
-      	   <?php if ( is_user_logged_in() ) { ?>
-<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php _e('My Account','woothemes'); ?></a>
-<?php }
-else { ?>
-<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
-<?php } ?>
-          	    
-      	     <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cart-icon.png" alt="">
-      	     
-      <?php global $woocommerce; ?>
-
-<a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping bag', 'woothemes'); ?>">
-
-<?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></a>
-      	    </div>
-        </div>
-      </div>
-</div>
-<div class="clearfix"></div>
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="container">
-        <div class="row">
-      	    <div class="col-xs-9 col-md-12">
+              	    
+              	    
+              	    
+              	    <div class="col-xs-12 col-sm-6 col-md-4">
               <?php if ( get_theme_mod( 'header_image' )) { ?>
                   <div class='site-logo'>
                       <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'>
@@ -84,11 +50,32 @@ else { ?>
                 <p class="lead"><?php echo get_bloginfo ( 'description' );  ?></p>
               <?php } ?>
         	  </div>
-        	  <div class="clearfix"></div>
-        	  
-<?php ubermenu( 'main' , array( 'menu' => 129 ) ); ?>
-        	  
-        	  
+              	    
+      	    <div class="col-xs-5 col-sm-3 col-md-2 pull-right mini_menu">
+      	   <?php if ( is_user_logged_in() ) { ?>
+<a class="hidden-xs" href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('My Account','woothemes'); ?>"><?php _e('My Account','woothemes'); ?></a>
+<?php }
+else { ?>
+<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" title="<?php _e('Login / Register','woothemes'); ?>"><?php _e('Login / Register','woothemes'); ?></a>
+<?php } ?>
+
+      	    
+      	     
+      <?php global $woocommerce; ?>
+
+<a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping bag', 'woothemes'); ?>">
+ <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/cart-icon.png" alt="">
+(<?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?>)</a>
+</div>
+
+      	    </div>
+      </div>
+</div>
+<div class="clearfix"></div>
+    <div class="container">
+        <div class="row">
+      	        <div class="hidden-xs"><?php ubermenu( 'main' , array( 'menu' => 129 ) ); ?></div>
+    	  
         </div>
     </div>
 
@@ -96,32 +83,36 @@ else { ?>
   
 <?php if(is_front_page()) { ?>
 <div class="big-wrapper">
- <div class="parallax-section-1"></div>
+<div class="home_hero hidden-xs"><img src="<?php the_field('home_hero'); ?>" /></div>
+
 </div>
   
-<!-- CAT - HEARING ENHANCEMENT -->
-<?php } elseif (is_tax('product_cat', 'kids','')) { ?>
- <div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
-
-<?php } elseif (is_tax('product_cat', 'boys','')) { ?>
- <div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
-
-<? } elseif (is_tax('product_cat', 'mens')) { ?>
-<div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
-
-<? } elseif (is_tax('product_cat', 'womens')) { ?>
-<div class="cat_headaers hidden-xs"> <img src="<?php the_field('product_cat','hero_image'); ?>" /> </div>
-
-
-
-<?php } else { ?>
+<?php } elseif ( is_tax ( 'product_cat', 'kids' ) ) { ?>
+<div class="cat_headers" style="background:url(<?php the_field('cat_header','product_cat_130'); ?>)  no-repeat top center ; margin:0px; 
+-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+"></div>
   
-  <?php } ?>
+<?php } elseif (is_tax('product_cat', 'mens')) { ?>
+<div class="cat_headers" style="background:url(<?php the_field('cat_header','product_cat_146'); ?>)  no-repeat top center ; margin:0px;
+"></div>
+
+
+    
+<?php } else { ?>
+<?php } ?>
 
 <?php if(is_front_page()) { ?>
+  <div id="container" class="container">
+
 <?php } elseif (is_tax('product_cat')) { ?>
 
    <div id="container" class="collection-pages">
+<?php } elseif (is_page('cart')) { ?>
+  <div id="container" class="container page-bumper">
+
 <?php } else { ?>
    
   <div id="container" class="container page-bumper">

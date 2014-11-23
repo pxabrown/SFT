@@ -114,34 +114,6 @@ function woo_add_payment_method_to_admin_new_order( $order, $is_admin_email ) {
 	} 
 }
 
-
-// ADD CUSTOM LOGIN PAGE DESIGN
-//wp_enqueue_style( ‘login’, get_stylesheet_directory_uri().’/login/login-styles.css’ );
-
-//function custom_login_css() {
-    //echo '<link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri().'/login/login-styles.css" />'; 
-    //}
-    //add_action('login_head', 'custom_login_css');
-
-function my_login_logo_url() {
-return get_bloginfo( 'url' );
-}
-add_filter( 'login_headerurl', 'my_login_logo_url' );
-
-function my_login_logo_url_title() {
-return 'Slyfox Threads';
-}
-add_filter( 'login_headertitle', 'my_login_logo_url_title' );
-
-function login_checked_remember_me() {
-add_filter( 'login_footer', 'rememberme_checked' );
-}
-add_action( 'init', 'login_checked_remember_me' );
-
-function rememberme_checked() {
-echo "<script>document.getElementById('rememberme').checked = true;</script>";
-}
-
 add_action( 'woocommerce_after_shop_loop_item', 'remove_add_to_cart_buttons', 1 );
 
 function remove_add_to_cart_buttons() {
@@ -160,6 +132,10 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 global $woocommerce;
 ob_start();
 ?>
+
+
+
+
 <a class="cart-contents" href="<?php echo $woocommerce->cart->get_cart_url(); ?>" title="<?php _e('View your shopping bag', 'woothemes'); ?>"><?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?></a>
 <?php
 $fragments['a.cart-contents'] = ob_get_clean();
@@ -217,13 +193,6 @@ add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_m
 
 add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 80 );
 
-// change add to cart text
-add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' ); // < 2.1
-add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_cart_button_text' ); // 2.1 +
-function woo_custom_cart_button_text() {
-return __( 'Add to Bag', 'woocommerce' );
-} 
-
  /**
  * Remove product tabs
  *
@@ -235,7 +204,6 @@ function woo_remove_product_tab($tabs) {
  	return $tabs;
 }
 add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tab', 98);
-
 
 /**
  * Optimize WooCommerce Scripts
@@ -276,56 +244,45 @@ function child_manage_woocommerce_styles() {
 
 }
 
-
 // override the quantity input with a dropdown
-function woocommerce_quantity_input() {
-global $product;
-global $post;
-global $prod_quant_default;
-$prod_quant_default = 1; // <----------- Default Amount
-$category_ID = '26'; // <----------- Case Category
- 
-$terms = get_the_terms( $post->ID, 'product_cat' );
-foreach ($terms as $term) {
-$product_cat_id = $term->term_id;
-break;
-}
-// Sets QTY for Cases (Cat 26)
-if ($product_cat_id == $category_ID){
-$prod_quant_default = 1;
-//break;
-}
-$defaults = array(
-'input_name' => 'quantity',
-'input_value' => '1',
-'max_value' => apply_filters( 'woocommerce_quantity_input_max', '', $product ),
-'min_value' => apply_filters( 'woocommerce_quantity_input_min', '', $product ),
-'step' => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
-'style'	=> apply_filters( 'woocommerce_quantity_style', 'float:left; margin-right:10px;', $product )
-);
-if ( ! empty( $defaults['min_value'] ) )
-$min = $defaults['min_value'];
-else $min = 1;
-if ( ! empty( $defaults['max_value'] ) )
-$max = $defaults['max_value'];
-else $max = 10;
-if ( ! empty( $defaults['step'] ) )
-$step = $defaults['step'];
-else $step = 1;
- 
-$options = '';
-for ( $count = $min; $count <= $max; $count = $count+$step ) {
-global $prod_quant_default;
-if ($count == $prod_quant_default) {
-$selected = ' selected="selected" ';
-}
-else {
-$selected = null;
-}
-$options .= '<option' . $selected . ' value="' . $count . '">Qty: ' . $count . '</option>';
- 
-}
-echo '<div class="quantity_select" style="' . $defaults['style'] . '"><select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="qty select-div">' . $options . '</select></div>';
+// Note that you still have to invoke this function like this:
+/*
+$product_quantity = woocommerce_quantity_input( array(
+  'input_name'  => "cart[{$cart_item_key}][qty]",
+  'input_value' => $cart_item['quantity'],
+  'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
+  'min_value'   => '0'
+), $_product, false );
+*/
+function woocommerce_quantity_input($data) {
+    global $product;
+
+  $defaults = array(
+    'input_name'    => $data['input_name'],
+    'input_value'   => $data['input_value'],
+    'max_value'   => apply_filters( 'woocommerce_quantity_input_max', '', $product ),
+    'min_value'   => apply_filters( 'woocommerce_quantity_input_min', '', $product ),
+    'step'    => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
+    'style'   => apply_filters( 'woocommerce_quantity_style', 'float:left; margin-right:10px;', $product )
+  );
+  if ( ! empty( $defaults['min_value'] ) )
+    $min = $defaults['min_value'];
+  else $min = 1;
+
+  if ( ! empty( $defaults['max_value'] ) )
+    $max = $defaults['max_value'];
+  else $max = 10;
+
+  if ( ! empty( $defaults['step'] ) )
+    $step = $defaults['step'];
+  else $step = 1;
+
+  $options = '';
+  for ( $count = $min; $count <= $max; $count = $count+$step ) {
+    $selected = $count === $defaults['input_value'] ? ' selected' : '';
+    $options .= '<option value="' . $count . '"'.$selected.'>' . $count . '</option>';
+  }
+  echo '<div class="quantity_select" style="' . $defaults['style'] . '"><select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="qty select-div">' . $options . '</select></div>';
 }
 
 //ADD SHARE FEATURES
@@ -346,3 +303,22 @@ function avf_descript_cart_fragments() {
     wp_dequeue_script( 'wc-cart-fragments' );
     return true;
 }
+
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+     unset($fields['billing']['billing_company']);
+     unset($fields['shipping']['shipping_company']);
+
+     return $fields;
+}
+
+// change add to cart text
+add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' ); // < 2.1
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_cart_button_text' ); // 2.1 +
+function woo_custom_cart_button_text() {
+return __( 'Add to Bag', 'woocommerce' );
+} 
+

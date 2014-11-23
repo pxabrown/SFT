@@ -161,7 +161,6 @@ function mb_scripts() {
 		wp_enqueue_script('customscripts', get_template_directory_uri() . '/assets/js/source/parallax-plugin.js', array('jquery'), false, true );		
 	}
 }
-
 /**
  * Remove Query Strings From Static Resources
  */

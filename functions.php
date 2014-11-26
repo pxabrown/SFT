@@ -56,6 +56,24 @@ function hide_all_shipping_when_free_is_available( $available_methods ) {
 	return $available_methods;
 }
 
+/**
+ * Change the add to cart text on single product pages
+ */
+function woo_custom_cart_button_text() {
+	return __('Add to Bag', 'woocommerce');
+}
+add_filter('single_add_to_cart_text', 'woo_custom_cart_button_text');
+
+
+
+/**
+ * Change the add to cart text on product archives
+ */
+function woo_archive_custom_cart_button_text() {
+	return __( 'My Button Text', 'woocommerce' );
+}
+add_filter( 'add_to_cart_text', 'woo_archive_custom_cart_button_text' );
+
 //Change add to cart - to - add to bag
 /**
  * Custom Add To Cart Messages
@@ -74,7 +92,7 @@ function custom_add_to_cart_message() {
  
 	else :
  
-		$message 	= sprintf('<a href="%s" class="button">%s</a> %s', get_permalink(woocommerce_get_page_id('cart')), __('View Cart &rarr;', 'woocommerce'), __('Product successfully added to your bag.', 'woocommerce') );
+		$message 	= sprintf('<a href="%s" class="button">%s</a> %s', get_permalink(woocommerce_get_page_id('cart')), __('View Bag &rarr;', 'woocommerce'), __('Product successfully added to your bag.', 'woocommerce') );
  
 	endif;
  
@@ -244,46 +262,36 @@ function child_manage_woocommerce_styles() {
 
 }
 
+
+
+// Place the following code in your theme's functions.php file
 // override the quantity input with a dropdown
-// Note that you still have to invoke this function like this:
-/*
-$product_quantity = woocommerce_quantity_input( array(
-  'input_name'  => "cart[{$cart_item_key}][qty]",
-  'input_value' => $cart_item['quantity'],
-  'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
-  'min_value'   => '0'
-), $_product, false );
-*/
-function woocommerce_quantity_input($data) {
-    global $product;
-
-  $defaults = array(
-    'input_name'    => $data['input_name'],
-    'input_value'   => $data['input_value'],
-    'max_value'   => apply_filters( 'woocommerce_quantity_input_max', '', $product ),
-    'min_value'   => apply_filters( 'woocommerce_quantity_input_min', '', $product ),
-    'step'    => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
-    'style'   => apply_filters( 'woocommerce_quantity_style', 'float:left; margin-right:10px;', $product )
-  );
-  if ( ! empty( $defaults['min_value'] ) )
-    $min = $defaults['min_value'];
-  else $min = 1;
-
-  if ( ! empty( $defaults['max_value'] ) )
-    $max = $defaults['max_value'];
-  else $max = 10;
-
-  if ( ! empty( $defaults['step'] ) )
-    $step = $defaults['step'];
-  else $step = 1;
-
-  $options = '';
-  for ( $count = $min; $count <= $max; $count = $count+$step ) {
-    $selected = $count === $defaults['input_value'] ? ' selected' : '';
-    $options .= '<option value="' . $count . '"'.$selected.'>' . $count . '</option>';
-  }
-  echo '<div class="quantity_select" style="' . $defaults['style'] . '"><select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="qty select-div">' . $options . '</select></div>';
+function woocommerce_quantity_input() {
+global $product;
+$defaults = array(
+'input_name' => 'quantity',
+'input_value' => '1',
+'max_value' => apply_filters( 'woocommerce_quantity_input_max', '', $product ),
+'min_value' => apply_filters( 'woocommerce_quantity_input_min', '', $product ),
+'step' => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
+'style'	=> apply_filters( 'woocommerce_quantity_style', 'float:left; margin-right:10px;', $product )
+);
+if ( ! empty( $defaults['min_value'] ) )
+$min = $defaults['min_value'];
+else $min = 1;
+if ( ! empty( $defaults['max_value'] ) )
+$max = $defaults['max_value'];
+else $max = 10;
+if ( ! empty( $defaults['step'] ) )
+$step = $defaults['step'];
+else $step = 1;
+$options = '';
+for ( $count = $min; $count <= $max; $count = $count+$step ) {
+$options .= '<option value="' . $count . '">' . $count . '</option>';
 }
+echo '<div class="quantity_select" style="' . $defaults['style'] . '"><div class="qty_right">Qty</div> <select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="qty select-div">' . $options . '</select></div>';
+}
+ 
 
 //ADD SHARE FEATURES
 function jptweak_remove_share() {
@@ -315,10 +323,41 @@ function custom_override_checkout_fields( $fields ) {
      return $fields;
 }
 
-// change add to cart text
-add_filter( 'add_to_cart_text', 'woo_custom_cart_button_text' ); // < 2.1
-add_filter( 'woocommerce_product_single_add_to_cart_text', 'woo_custom_cart_button_text' ); // 2.1 +
-function woo_custom_cart_button_text() {
-return __( 'Add to Bag', 'woocommerce' );
-} 
+/* remove single product sidebar */
+// add this code directly, no action needed
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 
+
+/* REGISTER WIDGETS ------------------------------------------------------------*/
+
+if (function_exists('register_sidebar')) {
+    register_sidebar(array(
+        'name' => 'Footer Left',
+        'id'   => 'footer-left-widget',
+        'description'   => 'Left Footer widget position.',
+        'before_widget' => '<div id="%1$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>'
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer Center',
+        'id'   => 'footer-center-widget',
+        'description'   => 'Centre Footer widget position.',
+        'before_widget' => '<div id="%1$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>'
+    ));
+
+    register_sidebar(array(
+        'name' => 'Footer Right',
+        'id'   => 'footer-right-widget',
+        'description'   => 'Right Footer widget position.',
+        'before_widget' => '<div id="%1$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>'
+    ));
+}

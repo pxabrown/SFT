@@ -83,19 +83,63 @@ do_action( 'woocommerce_before_cart' ); ?>
 				
 									<td class="product-quantity">
 										<?php
-											if ( $_product->is_sold_individually() ) {
-												$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
-											} else {
-												$product_quantity = woocommerce_quantity_input( array(
-													'input_name'  => "cart[{$cart_item_key}][qty]",
-													'input_value' => $cart_item['quantity'],
-													'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
-												), $_product, false );
-											}
-				
-											echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
-										?>
-									</td>
+if ( $_product->is_sold_individually() ) {
+$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+} else {
+
+/* This code is default quantity box
+
+$product_quantity = woocommerce_quantity_input( array(
+'input_name'  => "cart[{$cart_item_key}][qty]",
+'input_value' => $cart_item['quantity'],
+'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
+), $_product, false );
+}
+
+echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
+
+*/
+
+/* Replace above code with the code provided below  */
+
+//Start Code
+global $product;
+
+$defaults = array(
+'input_name' => "cart[{$cart_item_key}][qty]",
+'input_value' => $cart_item['quantity'],
+'max_value'  => apply_filters( 'woocommerce_quantity_input_max', '', $product ),
+'min_value'  => apply_filters( 'woocommerce_quantity_input_min', '', $product ),
+'step'   => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
+'style'   => apply_filters( 'woocommerce_quantity_style', 'float:left; margin-right:10px;', $product )
+);
+
+if (!empty($defaults['min_value']))
+$min = $defaults['min_value'];
+else $min = 1;
+
+if (!empty($defaults['max_value']))
+$max = $defaults['max_value'];
+else $max = 10;
+
+if (!empty($defaults['step']))
+$step = $defaults['step'];
+else $step = 1;
+
+$options = '';
+for($count = $min;$count <= $max;$count = $count+$step){
+if($count == $cart_item['quantity'])
+$selected="selected=selected";
+else
+$selected='';
+$options .= '<option value="' . $count . '" '.$selected.'>' . $count . '</option>';
+}
+
+echo '<select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="qty">' . $options . '</select>';
+
+//End Code
+
+}?>									</td>
 				
 									<td class="product-subtotal">
 										<?php

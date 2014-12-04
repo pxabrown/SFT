@@ -332,9 +332,9 @@ remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 
 if (function_exists('register_sidebar')) {
     register_sidebar(array(
-        'name' => 'Footer Left',
-        'id'   => 'footer-left-widget',
-        'description'   => 'Left Footer widget position.',
+        'name' => 'Footer Col 1',
+        'id'   => 'footer-col-1-widget',
+        'description'   => 'Col 1 Footer widget position.',
         'before_widget' => '<div id="%1$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h2>',
@@ -342,9 +342,19 @@ if (function_exists('register_sidebar')) {
     ));
 
     register_sidebar(array(
-        'name' => 'Footer Center',
-        'id'   => 'footer-center-widget',
-        'description'   => 'Centre Footer widget position.',
+        'name' => 'Footer Col 2',
+        'id'   => 'footer-col-2-widget',
+        'description'   => 'Col 2 Footer widget position.',
+        'before_widget' => '<div id="%1$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>'
+    ));
+    
+     register_sidebar(array(
+        'name' => 'Footer Col 3',
+        'id'   => 'footer-col-3-widget',
+        'description'   => 'Col 3 Footer widget position.',
         'before_widget' => '<div id="%1$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h2>',
@@ -352,12 +362,24 @@ if (function_exists('register_sidebar')) {
     ));
 
     register_sidebar(array(
-        'name' => 'Footer Right',
-        'id'   => 'footer-right-widget',
-        'description'   => 'Right Footer widget position.',
+        'name' => 'Footer Col 4',
+        'id'   => 'footer-col-4-widget',
+        'description'   => 'Col 4 Footer widget position.',
+        'before_widget' => '<div id="%1$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>'
+    ));
+    
+    register_sidebar(array(
+        'name' => 'Footer Terms Block',
+        'id'   => 'footer-terms-block-widget',
+        'description'   => 'Footer terms block widget position.',
         'before_widget' => '<div id="%1$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h2>',
         'after_title'   => '</h2>'
     ));
 }
+// add this code directly, no action needed
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );

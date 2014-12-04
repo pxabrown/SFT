@@ -28,20 +28,9 @@ function mb_contactmethods( $contactmethods ) {
 function mb_widgets_init() {
 	// Main Sidebar
 	register_sidebar(array(
-		'name'          => __( 'Main Sidebar', 'mb' ),
+		'name'          => __( 'Woocommerce Sidebar', 'mb' ),
 		'id'            => 'main-sidebar',
 		'description'   => __( 'Widgets for Main Sidebar.', 'mb' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h4 class="widget-title">',
-		'after_title'   => '</h4>'
-	));
-
-	// Footer
-	register_sidebar(array(
-		'name'          => __( 'Footer', 'mb' ),
-		'id'            => 'footer-widgets',
-		'description'   => __( 'Widgets for Footer.', 'mb' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h4 class="widget-title">',
@@ -78,11 +67,11 @@ function mb_dont_update_theme( $r, $url ) {
  */
 function mb_remove_dashboard_widgets() {
 	global $wp_meta_boxes;
-	// unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
+	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_quick_press']);
 	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_incoming_links']);
-	// unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
+	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_right_now']);
 	unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_plugins']);
-	// unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_drafts']);
+    unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_drafts']);
 	// unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']);
 	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']);
 	unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']);
@@ -157,8 +146,6 @@ function mb_scripts() {
 		wp_enqueue_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.6.2.min.js', false, NULL );
     wp_enqueue_script('bootstrap', get_template_directory_uri() . '/assets/js/vendor/bootstrap.min.js', array('jquery'), false, true );
 		wp_enqueue_script('bootstrap-hover', get_template_directory_uri() . '/assets/js/vendor/twitter-bootstrap-hover-dropdown.min.js', array('jquery', 'bootstrap'), false, true );
-		wp_enqueue_script('customscripts', get_template_directory_uri() . '/assets/js/source/main.js', array('jquery'), false, true );
-		wp_enqueue_script('customscripts', get_template_directory_uri() . '/assets/js/source/parallax-plugin.js', array('jquery'), false, true );		
 	}
 }
 /**

@@ -34,60 +34,6 @@ img {
     }
 }
 
-.carousel {
-  .carousel-inner {
-    .container {
-      position:relative;
-    }
-    
-    .carousel-caption {
-      padding: 20px;
-      left: 10px;
-      right: 50%;
-      bottom:130px;
-      background: rgba(0,0,0,0.6);
-      text-align: left;
-    }
-    
-    @media (max-width: $screen-tablet) {
-      .carousel-caption {
-        padding: 10px;
-        padding-bottom:4px;
-        background: rgba(0,0,0,0.6);
-        text-align: left;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-        
-        h1 {
-          margin-top: 2px;
-          font-size: 1.2em;
-        }
-        p {
-          font-size: 1em;
-        }
-      }
-    }
-  }
-  
-  .carousel-indicators li {
-    border:1px solid #eee;
-    margin-left:3px;
-    margin-right:3px;
-  }
-  
-  .carousel-indicators li.active {
-    background-color: #42B3E5;
-    margin-left:3px;
-    margin-right:3px;
-  }
-  
-  @media (max-width: $screen-tablet) {
-      .carousel-indicators li {
-        display:none;
-      }
-  }
-}
 
 
 

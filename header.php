@@ -5,17 +5,18 @@
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>
-<?php wp_title(''); ?>
-</title>
-<meta name="viewport" content="width=device-width">
+		<title><?php wp_title( '', true, 'right' ); ?></title>
+
+<meta name="google-site-verification" content="X0k1xYscZce2rmTQdG72f9tWBo0eVJyl35meGYgOALU" />
+<meta name="p:domain_verify" content="2606103e9b16a42aa103b2058ffc72b7"/>
+<meta charset="<?php bloginfo( 'charset' ); ?>" />	
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+
 <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/favicon.ico">
 <link rel="apple-touch-icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/apple-touch-icon.png">
 <?php wp_head(); ?>
 
 <!-- Styles -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 </head>
 

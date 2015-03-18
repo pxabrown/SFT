@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.1.0
+ * @version     2.3.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -182,12 +182,22 @@ echo '<select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 
 			<div class="col-sm-3">
 			
 				<?php woocommerce_cart_totals(); ?>
+				<input type="submit" class="update-cart-button button" name="update_cart" value="<?php _e( 'Update Shopping Bag', '' ); ?>" />
+				<div class="wc-proceed-to-checkout">
+
+		<?php //do_action( 'woocommerce_proceed_to_checkout' ); ?>
+<!-- 		<input type="submit" class="update-cart-button button" name="update_cart" value="<?php _e( 'Update Shopping Bag', '' ); ?>" /> -->
+
+	</div>
+
 				
-				<input type="submit" class="update-cart-button button" name="update_cart" value="<?php _e( 'Update Shopping Bag', '' ); ?>" /> <input type="submit" class="checkout-button button alt" name="proceed" value="<?php _e( 'Proceed to Checkout', '' ); ?>" />
+								<!-- <input type="submit" class="update-cart-button button" name="update_cart" value="<?php _e( 'Update Shopping Bag', '' ); ?>" /> --> <!-- <input type="submit" class="checkout-button button alt" name="proceed" value="<?php _e( 'Proceed to Checkout', '' ); ?>" /> -->
 				
-				<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
-				
+
+				<?php do_action( 'woocommerce_cart_actions' ); ?>
+
 				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
+
 				
 				<a class="continue-shopping" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e('Continue shopping', ''); ?></a>
 			

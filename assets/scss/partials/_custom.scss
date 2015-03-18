@@ -1,5 +1,5 @@
 body {
-	background: #fff;
+	background: repeat #fff;
 	font-family: 'PT Sans', sans-serif !important;
 	a {
         color: #888;
@@ -44,13 +44,16 @@ body {
     background: #eee;
 }
 
-.shiftnav ul.shiftnav-menu li.menu-item > .shiftnav-target, .shiftnav ul.shiftnav-menu li.shiftnav-retract > .shiftnav-target {
+.shiftnav ul.shiftnav-menu li.menu-item > .shiftnav-target, .shiftnav ul.shiftnav-menu li.shiftnav-retract > .shiftnav-target sub-menu sub-menu-1 {
     border-bottom: 1px solid #eaeaea;
 }
-.shiftnav ul.shiftnav-menu li.menu-item.shiftnav-active > ul.sub-menu, .shiftnav ul.shiftnav-menu li.menu-item.shiftnav-in-transition > ul.sub-menu {
+.shiftnav ul.shiftnav-menu li.menu-item.shiftnav-active > ul.sub-menu, .shiftnav ul.shiftnav-menu li.menu-item.shiftnav-in-transition > ul.sub-menu sub-menu sub-menu-1 {
     background: none repeat scroll 0 0 #f1f1f1;
     z-index: 50;
     text-indent: 20px;
+}
+.shiftnav.shiftnav-transition-standard ul.shiftnav-menu ul.sub-menu, .shiftnav.shiftnav-transition-standard ul.shiftnav-menu ul.sub-menu ul.sub-menu {
+    background: none repeat scroll 0 0 #f5f5f5 !important;
 }
 .shiftnav-inner a {
     color: #000;
@@ -1076,7 +1079,7 @@ tr.cart-subtotal {
 }
 
 .woocommerce .cart_totals {
-    margin-bottom: 20px;
+    //margin-bottom: 20px;
 }
 
 .woocommerce .cart_totals table {
@@ -1109,8 +1112,8 @@ tr.cart-subtotal {
     font-weight: normal;
     height: 42px;
     margin-bottom: 15px;
-    padding: 10px 15px;
-    text-align: left;
+    padding: 15px;
+    text-align: center;
     text-shadow: none;
     width: 100%;
 }
@@ -1375,4 +1378,18 @@ a img:hover {
     color: #ffffff;
     text-shadow: none;
     border:0px;
+}
+
+.chrsitmas-orders {
+    text-align: center;
+}
+
+.gform_wrapper .top_label input.medium, .gform_wrapper .top_label select.medium {
+    border: 1px solid;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.woocommerce-cart .wc-proceed-to-checkout {
+    padding: 0px !important;
 }
